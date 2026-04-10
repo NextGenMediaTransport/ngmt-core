@@ -182,3 +182,13 @@ The server does the following:
 
 IP Addresses should be determined by the server to ensure only the address accessible to the server is used.
 Therefore when registering a source, the client provided Addresses portion should be ignored.
+
+---
+
+## NextGenMediaTransport (NGMT) over QUIC (Phase 3)
+
+NGMT introduces a **MoQ-aligned** object header (`NgmtObjectHeader`, 32 bytes, little-endian) for **tracks**, **groups**, and **objects**, with optional **fragmentation** for QUIC datagram MTUs. See the meta-repo `docs/protocol/ngmt-wire-format.md` and C++ headers under `include/ngmt/protocol/`.
+
+- **Reliable control / metadata:** QUIC streams (ordered).
+- **Unreliable media:** QUIC datagrams; large payloads use multiple fragments identified by `fragment_index` / `fragment_total`.
+- **Discovery:** DNS-SD service type **`_ngmt._udp`** (TXT records carry port and capabilities); **unicast fallback** is supported when multicast is filtered.

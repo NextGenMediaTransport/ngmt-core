@@ -5,7 +5,14 @@ project(ngmt-core VERSION 0.1.0 LANGUAGES CXX)
 
 include(GNUInstallDirs)
 
-add_library(ngmt_core src/ngmt_core.cpp)
+add_library(
+  ngmt_core
+  src/ngmt_core.cpp
+  src/protocol/object.cpp
+  src/protocol/packetizer.cpp
+  src/jitter_buffer.cpp
+  src/discovery/mdns_impl.cpp)
+
 set_target_properties(ngmt_core PROPERTIES OUTPUT_NAME ngmt-core)
 
 target_compile_features(ngmt_core PUBLIC cxx_std_17)

@@ -4,7 +4,9 @@
 
 The upstream **.NET reference implementation** (formerly `libomtnet`) lives under [`legacy-reference-csharp/`](legacy-reference-csharp/) as a **blueprint** only; it is not built by the default CMake flow.
 
-Protocol details: [`PROTOCOL.md`](PROTOCOL.md).
+Protocol details: [`PROTOCOL.md`](PROTOCOL.md). NGMT wire layout: [`../docs/protocol/ngmt-wire-format.md`](../docs/protocol/ngmt-wire-format.md) (when using the meta-repo checkout).
+
+Phase 3 additions: `include/ngmt/protocol/` (MoQ-aligned objects + packetizer), `include/ngmt/jitter_buffer.hpp`, `include/ngmt/discovery/advertiser.hpp`.
 
 ## Prerequisites
 

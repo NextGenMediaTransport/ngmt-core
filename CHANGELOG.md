@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 where versioning applies.
 
+## 2026-04-10 — Phase 3: Protocol objects, jitter, discovery stub, wire docs
+
+### Added
+
+- MoQ-aligned **`NgmtObjectHeader`** and helpers (`include/ngmt/protocol/object.hpp`, `src/protocol/object.cpp`).
+- **Packetizer** for OMT-style frame header encoding and payload fragmentation (`include/ngmt/protocol/packetizer.hpp`, `src/protocol/packetizer.cpp`).
+- **`JitterBuffer`** for variable datagram arrival (`include/ngmt/jitter_buffer.hpp`, `src/jitter_buffer.cpp`).
+- **Discovery** `Advertiser` facade with manual unicast fallback (`include/ngmt/discovery/advertiser.hpp`, `src/discovery/mdns_impl.cpp`); full mDNS integration pending library choice.
+- **`PROTOCOL.md`** appendix linking NGMT over QUIC and `docs/protocol/ngmt-wire-format.md`.
+
 ## 2026-04-10 — Phase 2: Build standardization and infrastructure
 
 ### Added
