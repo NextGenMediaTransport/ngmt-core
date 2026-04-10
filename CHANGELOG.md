@@ -8,6 +8,10 @@ where versioning applies.
 
 ## 2026-04-10 — Phase 3: Protocol objects, jitter, discovery stub, wire docs
 
+### Fixed
+
+- **Linux CI (GCC):** include `<cstdint>` in `include/ngmt/discovery/advertiser.hpp` so `std::uint16_t` is defined (strict headers on Ubuntu runners).
+
 ### Added
 
 - MoQ-aligned **`NgmtObjectHeader`** and helpers (`include/ngmt/protocol/object.hpp`, `src/protocol/object.cpp`).
