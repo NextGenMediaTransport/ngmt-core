@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 where versioning applies.
 
+## [Unreleased]
+
+### Added
+
+- **Optional CMake target** `ngmt_transport_ffi_smoke` (`-DNGMT_ENABLE_TRANSPORT_FFI_SMOKE=ON`): builds a sibling **ngmt-transport** checkout via Cargo, links `tools/ngmt_transport_ffi_smoke.cpp` against the **cdylib**, exercises C ABI (`ngmt_transport_abi_version`, header LE helpers).
+- **`docs/discovery-status.md`:** documents **Rust `ngmt-studio`** vs **C++ `Advertiser`** mDNS scope.
+
 ## 2026-04-10 — Phase 3: Protocol objects, jitter, discovery stub, wire docs
 
 ### Fixed

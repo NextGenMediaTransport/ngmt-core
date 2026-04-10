@@ -60,6 +60,18 @@ dotnet build libomtnet.sln -c Release
 
 CI for this repository builds the **C++** CMake project only; validating the legacy project is optional and done locally (or in a future workflow) using the commands above.
 
+## Optional: `ngmt-transport` C ABI smoke
+
+With a **sibling checkout** of `ngmt-transport` and `cargo` on your `PATH`, you can build a small C++ tool that links the Rust **cdylib** and exercises [`ngmt_transport.h`](https://github.com/NextGenMediaTransport/ngmt-transport/blob/main/include/ngmt_transport.h) (ABI version + header LE helpers):
+
+```sh
+cmake -B build-ffi -S . -DCMAKE_BUILD_TYPE=Release -DNGMT_ENABLE_TRANSPORT_FFI_SMOKE=ON
+cmake --build build-ffi --config Release
+./build-ffi/ngmt_transport_ffi_smoke
+```
+
+**Discovery:** LAN mDNS in this crate vs Rust Studio is documented in [`docs/discovery-status.md`](docs/discovery-status.md).
+
 ## Formatting
 
 C++ formatting uses the checked-in [`.clang-format`](.clang-format) (LLVM-based). Example:

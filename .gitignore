@@ -364,6 +364,7 @@ FodyWeavers.xsd
 
 # CMake (out-of-source builds at repo root)
 /build/
+build-ffi/
 cmake-build-*/
 CMakeCache.txt
 CMakeFiles/
