@@ -1,40 +1,71 @@
-﻿# Open Media Transport (OMT) Libary for .NET
+﻿# ngmt-core
 
-libomtnet is a .NET library that implements the Open Media Transport protocol for low latency, high performance Local Area Network
-video/audio transmission.
+**ngmt-core** is the NextGenMediaTransport (NGMT) **C++** library for Open Media Transport (OMT)–style core protocol work. The primary build is **CMake** with **C++17**.
 
-It is built using a basic subset of .NET and as a result supports both .NET Framework 4+ and .NET Standard 2.0+ applications, covering all .NET versions from 4 onwards.
+The upstream **.NET reference implementation** (formerly `libomtnet`) lives under [`legacy-reference-csharp/`](legacy-reference-csharp/) as a **blueprint** only; it is not built by the default CMake flow.
 
-libomt is a native compiled version of the .NET library and is available separately.
+Protocol details: [`PROTOCOL.md`](PROTOCOL.md).
 
-## Getting Started
+## Prerequisites
 
-### Installation
+- **CMake** 3.15 or newer
+- A **C++17** compiler (Clang, GCC, or MSVC)
 
-Official binary releases for Windows and MacOS can be found in the Releases section of this repository.
+Optional: **.NET SDK** if you want to compile the legacy C# reference (see below).
 
-There are only two dependencies when using this library in a .NET app:
+## Build (C++ library)
 
-**libomtnet.dll**
-This is a cross platform file that will work on Windows, Mac and Linux
+From the repository root:
 
-**libvmx.dll (Windows)**
-**libvmx.dylib (MacOS)**
-**libvmx.so (Linux)**
+```sh
+cmake -B build -S .
+cmake --build build --config Release
+```
 
-These are platform specific native shared libraries. The correct library for the CPU type and OS platform needs to be placed in the same directory as the application.
+On Linux and macOS with single-configuration generators, use a Release configure step:
 
-### Creating a Source
+```sh
+cmake -B build -S . -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+```
 
-1. Create an instance of the OMTSend class specifying a name
-2. Fill the struct OMTMediaFrame with the video data in either of the available YUV or RGBx formats
-3. Send using OMTSend.Send
-4. That's it, the source is now available on the network for receivers to connect to
+### Static vs shared library
 
-### Creating a Receiver
+CMake follows the standard [`BUILD_SHARED_LIBS`](https://cmake.org/cmake/help/latest/variable/BUILD_SHARED_LIBS.html) option. Example for a **shared** library:
 
-1. Create an instance of the OMTReceive class specifying the full name of the source (including machine name)
-The full name of all sources on the network can be found by using the OMTDiscovery class
-2. In a loop, poll OMTReceive.Receive specifying the types of frames to receive and also a timeout
-3. Process said frames as required
+```sh
+cmake -B build -S . -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+```
 
+## Legacy C# reference (blueprint)
+
+The original OMT **.NET** sources, solution, and project files were moved to **`legacy-reference-csharp/`** for comparison and porting. They are **not** part of the C++ CMake target.
+
+To build that reference implementation (requires a [.NET SDK](https://dotnet.microsoft.com/download)):
+
+```sh
+cd legacy-reference-csharp
+dotnet build
+```
+
+Or build the solution in Release:
+
+```sh
+cd legacy-reference-csharp
+dotnet build libomtnet.sln -c Release
+```
+
+CI for this repository builds the **C++** CMake project only; validating the legacy project is optional and done locally (or in a future workflow) using the commands above.
+
+## Formatting
+
+C++ formatting uses the checked-in [`.clang-format`](.clang-format) (LLVM-based). Example:
+
+```sh
+clang-format -i include/ngmt_core.hpp src/ngmt_core.cpp
+```
+
+## License
+
+See [`LICENSE.txt`](LICENSE.txt).
