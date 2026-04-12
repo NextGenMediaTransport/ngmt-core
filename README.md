@@ -1,5 +1,7 @@
 ﻿# ngmt-core
 
+<p align="center"><img src="branding/svg/marks/ngmt-core.svg" width="96" height="96" alt="NGMT Core mark"/></p>
+
 **ngmt-core** is the NextGenMediaTransport (NGMT) **C++** library for Open Media Transport (OMT)–style core protocol work. The primary build is **CMake** with **C++17**.
 
 The upstream **.NET reference implementation** (formerly `libomtnet`) lives under [`legacy-reference-csharp/`](legacy-reference-csharp/) as a **blueprint** only; it is not built by the default CMake flow.

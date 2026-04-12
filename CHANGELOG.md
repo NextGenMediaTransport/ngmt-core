@@ -10,6 +10,7 @@ where versioning applies.
 
 ### Added
 
+- **Branding:** vendored **`branding/svg/marks/ngmt-core.svg`** + README header (canonical masters remain in the meta repo).
 - **Optional CMake target** `ngmt_transport_ffi_smoke` (`-DNGMT_ENABLE_TRANSPORT_FFI_SMOKE=ON`): builds a sibling **ngmt-transport** checkout via Cargo, links `tools/ngmt_transport_ffi_smoke.cpp` against the **cdylib**, exercises C ABI (`ngmt_transport_abi_version`, header LE helpers).
 - **`docs/discovery-status.md`:** documents **Rust `ngmt-studio`** vs **C++ `Advertiser`** mDNS scope.
 
